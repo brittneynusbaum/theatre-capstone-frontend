@@ -14,15 +14,18 @@ export default {
   methods: {
     songsIndex: function () {
       console.log('all songs')
-      axios.get(`/songs`, this.searchSongsParams).then(response => {
+      axios.get(`/songs?id=${this.searchSongsParams}`).then(response => {
         console.log(response.data)
-        this.searchSongsParams = response.data
-        return this.songs.includes(this.searchSongsParams)
+        this.songs = response.data
       })
     },
     // searchSongs: function () {
     //   console.log('searching songs')
-    //   this.searchSongsParams = 
+    //   return this.songs.filter(song => {
+    //     var lowerTitle = song.title.toLowerCase();
+    //     var lowerParams = this.searchSongsParams.toLowerCase();
+    //     return lowerTitle.includes(this.searchSongsParams);
+    //   })
     // }
   },
 };
@@ -34,9 +37,8 @@ export default {
     <div v-for="song in songs" v-bind:key="song.id">
       <p>{{ song.title }}</p>
     </div>
-    <p>Songwriter: <input v-model="searchSongsParams.songwriter_id"></p>
+    <p>Songwriter: <input v-model="searchSongsParams"></p>
     <button v-on:click="songsIndex()">Search songs</button>
-    <!-- <P>{{ songs }}</P> -->
 
   </div>
 </template>
