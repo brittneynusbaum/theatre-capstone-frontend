@@ -14,7 +14,7 @@ export default {
   methods: {
     songsIndex: function () {
       console.log('all songs')
-      axios.get(`/songs?id=${this.searchSongsParams}`).then(response => {
+      axios.get(`/songs?songwriter=${this.searchSongsParams}`).then(response => {
         console.log(response.data)
         this.songs = response.data
       })
