@@ -14,7 +14,8 @@ export default {
   methods: {
     songsIndex: function () {
       console.log('all songs')
-      axios.get(`/songs?songwriter=${this.searchSongsParams}`).then(response => {
+      console.log(this.songwriter_id)
+      axios.get(`/songs?composer=${this.searchSongsParams}`).then(response => {
         console.log(response.data)
         this.songs = response.data
       })
@@ -36,6 +37,7 @@ export default {
     <h1>{{ message }}</h1>
     <div v-for="song in songs" v-bind:key="song.id">
       <p>{{ song.title }}</p>
+      <p>{{ song.songwriter_id }}</p>
     </div>
     <p>Songwriter: <input v-model="searchSongsParams"></p>
     <button v-on:click="songsIndex()">Search songs</button>
