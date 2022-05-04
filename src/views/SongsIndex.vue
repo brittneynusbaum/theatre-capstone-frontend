@@ -3,51 +3,81 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      message: "Song index page",
+      message: "Seach here",
       songs: [],
-      searchSongwriterParams: {},
-      searchShowParams: {}
+      songwriters: [],
+      searchSongwriterParams: [],
+      searchShowParams: [],
+      shows: []
     };
   },
   created: function () {
-    // this.songsIndex()
+    this.songwriterIndex(),
+      this.showIndex()
   },
   methods: {
-    songwriterSongsIndex: function () {
+    songsIndex: function () {
       console.log('all songs')
-      console.log(this.songwriter_id)
-      axios.get(`/songs?composer=${this.searchSongwriterParams}&title=${this.searchShowParams}`).then(response => {
+      console.log(this.searchSongwriterParams)
+      axios.get(`/songs`).then(response => {
         console.log(response.data)
         this.songs = response.data
       })
     },
-    showSongsIndex: function () {
-      console.log('all songs based on show')
+    songwriterIndex: function () {
+      console.log('all songwriter options')
+      axios.get('/songwriters').then(response => {
+        console.log(response.data)
+        this.songwriters = response.data
+      })
+    },
+    showIndex: function () {
+      console.log('all show options')
+      axios.get('/shows').then(response => {
+        console.log(response.data)
+        this.shows = response.data
+      })
+    },
+    filterSongs: function () {
+      return this.songs.filter(song => {
+        return song.title.includes(this.searchSongwriterParams.id, this.searchShowParams.id);
+      })
     }
-    // searchSongs: function () {
-    //   console.log('searching songs')
-    //   return this.songs.filter(song => {
-    //     var lowerTitle = song.title.toLowerCase();
-    //     var lowerParams = this.searchSongwriterParams.toLowerCase();
-    //     return lowerTitle.includes(this.searchSongwriterParams);
-    //   })
-    // }
+
   },
 };
 </script>
 
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
-    <div v-for="song in songs" v-bind:key="song.id">
+    <h1>{{ }}</h1>
+    <div v-for="song in filterSongs()" v-bind:key="song.id">
       <p>{{ song.title }}</p>
     </div>
-    <p>Songwriter: <input v-model="searchSongwriterParams"></p>
-    <p>Show: <input v-model="searchShowParams"></p>
-    <button v-on:click="songwriterSongsIndex()">Search songs</button>
-
+    <h3>Search by Songwriter:</h3>
+    <div v-for="songwriter in songwriters" v-bind:key="songwriter.id">
+      <!-- <p>Composer: {{ songwriter.composer }}</p>
+      <p>Lyrics: {{ songwriter.lyrics }}</p> -->
+      <p>{{ songwriter.composer }}<input type="checkbox" id="songwriter.id" v-bind:value="songwriter.composer"
+          v-model="searchSongwriterParams">
+      </p>
+    </div>
+    <h3>Search by Show:</h3>
+    <div v-for="show in shows" v-bind:key="show.id">
+      <p>{{ show.title }}<input type="checkbox" id="show.id" v-bind:value="show.title" v-model="searchShowParams">
+      </p>
+    </div>
+    {{ searchSongwriterParams }} {{ searchShowParams }}
+    <button v-on:click="songsIndex()">Search songs</button>
   </div>
 </template>
 
 <style>
 </style>
+
+<!-- ?composer=${this.searchSongwriterParams}&title=${this.searchShowParams} -->
+  <!-- <h3>Songwriter: <input type= v-model="searchSongwriterParams"></h3>
+    <h3>Show: <input v-model="searchSongwriterParams"></h3>
+    <h3>Genre: <input v-model="searchSongwriterParams"></h3>
+    <h3>Style: <input v-model="searchSongwriterParams"></h3>
+    <button v-on:click="songsIndex()">Search songs</button> -->
