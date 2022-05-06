@@ -8,18 +8,21 @@ export default {
       songwriters: [],
       searchSongwriterParams: [],
       searchShowParams: [],
-      shows: []
+      shows: [],
+      // displayedSongs: []
     };
   },
   created: function () {
-    this.songwriterIndex(),
-      this.showIndex()
+    this.showIndex(),
+      this.songsIndex()
+  },
+  mounted: function () {
+    this.songwriterIndex()
   },
   methods: {
     songsIndex: function () {
       console.log('all songs')
-      console.log(this.searchSongwriterParams)
-      axios.get(`/songs`).then(response => {
+      axios.get(`/songs?composer=${this.searchSongwriterParams}&title=${this.searchShowParams}`).then(response => {
         console.log(response.data)
         this.songs = response.data
       })
@@ -37,12 +40,32 @@ export default {
         console.log(response.data)
         this.shows = response.data
       })
-    },
-    filterSongs: function () {
-      return this.songs.filter(song => {
-        return song.title.includes(this.searchSongwriterParams.id, this.searchShowParams.id);
-      })
     }
+    // showSongs: function () {
+    //   console.log(this.songs)
+    //   console.log(this.songwriters)
+    //   this.songs.forEach(function (song) {
+    //     console.log(song)
+    //     this.songwriters.forEach(function (songwriter) {
+    //       if (songwriter.id === song.songwriter_id) {
+    //         this.displayedSongs.push(song)
+    //       }
+    //     })
+    //   })
+    // this.searchSongwriterParams.forEach(function (name) {
+    // console.log(name)
+    // this.songs.forEach(function (song) {
+    // if (song.composer === name) {
+    //   this.displayedSongs.push(song)
+    // }
+    // })
+    // })
+    // }
+    // filterSongs: function () {
+    //   return this.songs.filter(song => {
+    //     return song.title.includes(this.searchSongwriterParams.id, this.searchShowParams.id);
+    //   })
+    // }
 
   },
 };
@@ -50,8 +73,8 @@ export default {
 
 <template>
   <div class="home">
-    <h1>{{ }}</h1>
-    <div v-for="song in filterSongs()" v-bind:key="song.id">
+    <h1>Song Options:</h1>
+    <div v-for="song in songs" v-bind:key="song.id">
       <p>{{ song.title }}</p>
     </div>
     <h3>Search by Songwriter:</h3>
