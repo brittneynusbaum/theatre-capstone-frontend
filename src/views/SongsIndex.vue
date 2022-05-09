@@ -6,15 +6,17 @@ export default {
       message: "Seach here",
       songs: [],
       songwriters: [],
+      shows: [],
+      genres: [],
       searchSongwriterParams: [],
       searchShowParams: [],
-      shows: [],
-      // displayedSongs: []
+      searchGenreParams: []
     };
   },
   created: function () {
     this.showIndex(),
-      this.songsIndex()
+      this.songsIndex(),
+      this.genresIndex()
   },
   mounted: function () {
     this.songwriterIndex()
@@ -22,7 +24,7 @@ export default {
   methods: {
     songsIndex: function () {
       console.log('all songs')
-      axios.get(`/songs?composer=${this.searchSongwriterParams}&title=${this.searchShowParams}`).then(response => {
+      axios.get(`/songs?composer=${this.searchSongwriterParams}&show=${this.searchShowParams}&genre=${this.searchGenreParams}`).then(response => {
         console.log(response.data)
         this.songs = response.data
       })
@@ -40,32 +42,14 @@ export default {
         console.log(response.data)
         this.shows = response.data
       })
+    },
+    genresIndex: function () {
+      console.log('all genre options')
+      axios.get('/genres').then(response => {
+        console.log(response.data)
+        this.genres = response.data
+      })
     }
-    // showSongs: function () {
-    //   console.log(this.songs)
-    //   console.log(this.songwriters)
-    //   this.songs.forEach(function (song) {
-    //     console.log(song)
-    //     this.songwriters.forEach(function (songwriter) {
-    //       if (songwriter.id === song.songwriter_id) {
-    //         this.displayedSongs.push(song)
-    //       }
-    //     })
-    //   })
-    // this.searchSongwriterParams.forEach(function (name) {
-    // console.log(name)
-    // this.songs.forEach(function (song) {
-    // if (song.composer === name) {
-    //   this.displayedSongs.push(song)
-    // }
-    // })
-    // })
-    // }
-    // filterSongs: function () {
-    //   return this.songs.filter(song => {
-    //     return song.title.includes(this.searchSongwriterParams.id, this.searchShowParams.id);
-    //   })
-    // }
 
   },
 };
@@ -79,8 +63,6 @@ export default {
     </div>
     <h3>Search by Songwriter:</h3>
     <div v-for="songwriter in songwriters" v-bind:key="songwriter.id">
-      <!-- <p>Composer: {{ songwriter.composer }}</p>
-      <p>Lyrics: {{ songwriter.lyrics }}</p> -->
       <p>{{ songwriter.composer }}<input type="checkbox" id="songwriter.id" v-bind:value="songwriter.composer"
           v-model="searchSongwriterParams">
       </p>
@@ -90,17 +72,15 @@ export default {
       <p>{{ show.title }}<input type="checkbox" id="show.id" v-bind:value="show.title" v-model="searchShowParams">
       </p>
     </div>
-    {{ searchSongwriterParams }} {{ searchShowParams }}
+    <h3>Search by Genre:</h3>
+    <div v-for="genre in genres" v-bind:key="genre.id">
+      <p>{{ genre.name }}<input type="checkbox" id="genre.id" v-bind:value="genre.name" v-model="searchGenreParams">
+      </p>
+    </div>
+    {{ searchSongwriterParams }} {{ searchShowParams }} {{ searchGenreParams }}
     <button v-on:click="songsIndex()">Search songs</button>
   </div>
 </template>
 
 <style>
 </style>
-
-<!-- ?composer=${this.searchSongwriterParams}&title=${this.searchShowParams} -->
-  <!-- <h3>Songwriter: <input type= v-model="searchSongwriterParams"></h3>
-    <h3>Show: <input v-model="searchSongwriterParams"></h3>
-    <h3>Genre: <input v-model="searchSongwriterParams"></h3>
-    <h3>Style: <input v-model="searchSongwriterParams"></h3>
-    <button v-on:click="songsIndex()">Search songs</button> -->
