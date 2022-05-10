@@ -8,23 +8,26 @@ export default {
       songwriters: [],
       shows: [],
       genres: [],
+      tempos: [],
       searchSongwriterParams: [],
       searchShowParams: [],
-      searchGenreParams: []
+      searchGenreParams: [],
+      searchTempoParams: []
     };
   },
   created: function () {
     this.showIndex(),
+      this.songwriterIndex(),
       this.songsIndex(),
-      this.genresIndex()
+      this.genresIndex(),
+      this.temposIndex()
   },
   mounted: function () {
-    this.songwriterIndex()
   },
   methods: {
     songsIndex: function () {
       console.log('all songs')
-      axios.get(`/songs?composer=${this.searchSongwriterParams}&show=${this.searchShowParams}&genre=${this.searchGenreParams}`).then(response => {
+      axios.get(`/songs?composer=${this.searchSongwriterParams}&show=${this.searchShowParams}&genre=${this.searchGenreParams}&tempo=${this.searchTempoParams}`).then(response => {
         console.log(response.data)
         this.songs = response.data
       })
@@ -48,6 +51,13 @@ export default {
       axios.get('/genres').then(response => {
         console.log(response.data)
         this.genres = response.data
+      })
+    },
+    temposIndex: function () {
+      console.log('all tempo options')
+      axios.get('/tempos').then(response => {
+        console.log(response.data)
+        this.tempos = response.data
       })
     }
 
@@ -77,7 +87,12 @@ export default {
       <p>{{ genre.name }}<input type="checkbox" id="genre.id" v-bind:value="genre.name" v-model="searchGenreParams">
       </p>
     </div>
-    {{ searchSongwriterParams }} {{ searchShowParams }} {{ searchGenreParams }}
+    <h3>Search by Tempo:</h3>
+    <div v-for="tempo in tempos" v-bind:key="tempo.id">
+      <p>{{ tempo.name }}<input type="checkbox" id="tempo.id" v-bind:value="tempo.name" v-model="searchTempoParams">
+      </p>
+    </div>
+    {{ searchSongwriterParams }} {{ searchShowParams }} {{ searchGenreParams }} {{ searchTempoParams }}
     <button v-on:click="songsIndex()">Search songs</button>
   </div>
 </template>
