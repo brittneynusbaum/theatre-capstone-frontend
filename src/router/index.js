@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import SongsIndex from '../views/SongsIndex.vue'
 import SavedSongs from '../views/SavedSongs.vue'
 import SignUp from '../views/SignUp.vue'
+import LogIn from '../views/LogIn.vue'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignUp
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LogIn
   },
   {
     path: '/about',

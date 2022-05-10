@@ -13,7 +13,7 @@ export default {
     userCreate: function () {
       axios.post(`/users`, this.newUserParams).then(response => {
         console.log(response.data);
-        this.$router.push("/songs");
+        this.$router.push("/login");
       })
         .catch((error) => {
           this.errors = error.response.data.errors;
