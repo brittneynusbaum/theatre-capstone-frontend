@@ -12,7 +12,8 @@ export default {
       searchSongwriterParams: [],
       searchShowParams: [],
       searchGenreParams: [],
-      searchTempoParams: []
+      searchTempoParams: [],
+      auditionSongs: []
     };
   },
   created: function () {
@@ -59,8 +60,16 @@ export default {
         console.log(response.data)
         this.tempos = response.data
       })
+    },
+    saving: function (theId) {
+      console.log(theId)
+      console.log('saving audition song')
+      axios.post(`/saved_songs?song_id=${theId}&user_id=1`).then(response => {
+        console.log(response.data);
+        // console.log(this.auditionSongs)
+        // this.auditionSongs = theId
+      })
     }
-
   },
 };
 </script>
@@ -70,7 +79,9 @@ export default {
     <h1>Song Options:</h1>
     <div v-for="song in songs" v-bind:key="song.id">
       <p>{{ song.title }}</p>
+      <p><button v-on:click="saving(song.id)">Save song</button></p>
     </div>
+    <hr />
     <h3>Search by Songwriter:</h3>
     <div v-for="songwriter in songwriters" v-bind:key="songwriter.id">
       <p>{{ songwriter.composer }}<input type="checkbox" id="songwriter.id" v-bind:value="songwriter.composer"
