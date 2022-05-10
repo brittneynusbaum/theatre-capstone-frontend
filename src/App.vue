@@ -2,7 +2,8 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/songs">Songs</router-link>|
-    <router-link to="/saved">Saved Songs</router-link>
+    <router-link to="/saved">Saved Songs</router-link>|
+    <router-link to="/signup">Signup</router-link>
   </nav>
   <router-view />
 </template>
