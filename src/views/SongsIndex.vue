@@ -106,6 +106,46 @@ export default {
     {{ searchSongwriterParams }} {{ searchShowParams }} {{ searchGenreParams }} {{ searchTempoParams }}
     <button v-on:click="songsIndex()">Search songs</button>
   </div>
+
+  <div class="container">
+    <div class="row align-items-start">
+      <div class="col">
+        <h3>Search by Show:</h3>
+        <div v-for="show in shows" v-bind:key="show.id">
+          <p>{{ show.title }}<input type="checkbox" id="show.id" v-bind:value="show.title" v-model="searchShowParams">
+          </p>
+        </div>
+      </div>
+      <div class="col">
+        One of three columns
+      </div>
+      <div class="col">
+        One of three columns
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col">
+        One of three columns
+      </div>
+      <div class="col">
+        One of three columns
+      </div>
+      <div class="col">
+        One of three columns
+      </div>
+    </div>
+    <div class="row align-items-end">
+      <div class="col">
+        One of three columns
+      </div>
+      <div class="col">
+        One of three columns
+      </div>
+      <div class="col">
+        One of three columns
+      </div>
+    </div>
+  </div>
 </template>
 
 <style>
