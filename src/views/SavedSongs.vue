@@ -26,15 +26,17 @@ export default {
         this.auditionSongs = response.data
       })
     },
-    notesUpdate: function (theId) {
+    notesUpdate: function (theNote) {
       console.log('edit notes')
-      axios.patch(`/notes/${theId}`, this.editNoteParams).then(response => {
+      axios.patch(`/notes/${theNote.id}`, theNote).then(response => {
         console.log(response.data);
-        this.currentNote = {};
+        // theNote = response.data
+        // this.currentNote = {};
       })
     },
-    notesCreate: function () {
-      console.log('creating note')
+    notesCreate: function (auditionSong) {
+      console.log(auditionSong)
+      this.newNoteParams.song_id = auditionSong.song_id
       axios.post(`/notes`, this.newNoteParams).then(response => {
         console.log(response.data);
         this.newNoteParams = response.data
@@ -51,34 +53,12 @@ export default {
     <!-- {{ auditionSongs }} -->
     <div v-for="auditionSong in auditionSongs" v-bind:key="auditionSong.id">
       <p>{{ auditionSong.title }}</p>
-      <p>{{ auditionSong.notes[0].description }}</p>
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Edit note
-      </button>
-
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel" v-bind:key="auditionSong.notes[0].id">Edit note</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p>Current note: {{ auditionSong.notes[0].description }}</p>
-              <p>Note: <input type="text" v-model="editNoteParams.description"></p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" v-on:click="notesUpdate(auditionSong.notes[0].id)">Save
-                changes</button>
-            </div>
-          </div>
-        </div>
+      <div v-for="note in auditionSong.notes" v-bind:key="note.id">
+        <p>Note: <input type="text" v-model="note.description"></p>
+        <button type="button" class="btn btn-primary" v-on:click="notesUpdate(note)">Save changes</button>
       </div>
       <p><input type="text" v-model="newNoteParams.description"></p>
-      <button v-on:click="notesCreate()">New note</button>
+      <button type="button" class="btn btn-primary" v-on:click="notesCreate(auditionSong)">New note</button>
       <hr />
     </div>
   </div>
