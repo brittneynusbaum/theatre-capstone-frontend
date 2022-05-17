@@ -101,16 +101,16 @@ export default {
             <div class="col">
               <h5>Show:</h5>
               <div v-for="show in shows" v-bind:key="show.id">
-                <p>{{ show.title }}<input type="checkbox" id="show.id" v-bind:value="show.title"
-                    v-model="searchShowParams">
+                <p>{{ show.title }}<input class="form-check-input" type="checkbox" id="show.id"
+                    v-bind:value="show.title" v-model="searchShowParams">
                 </p>
               </div>
             </div>
             <div class="col">
               <h5>Songwriter:</h5>
               <div v-for="songwriter in songwriters" v-bind:key="songwriter.id">
-                <p>{{ songwriter.composer }}<input type="checkbox" id="songwriter.id" v-bind:value="songwriter.composer"
-                    v-model="searchSongwriterParams">
+                <p>{{ songwriter.composer }}<input class="form-check-input" type="checkbox" id="songwriter.id"
+                    v-bind:value="songwriter.composer" v-model="searchSongwriterParams">
                 </p>
               </div>
             </div>
@@ -119,16 +119,16 @@ export default {
             <div class="col">
               <h5>Genre:</h5>
               <div v-for="genre in genres" v-bind:key="genre.id">
-                <p>{{ genre.name }}<input type="checkbox" id="genre.id" v-bind:value="genre.name"
-                    v-model="searchGenreParams">
+                <p>{{ genre.name }}<input class="form-check-input" type="checkbox" id="genre.id"
+                    v-bind:value="genre.name" v-model="searchGenreParams">
                 </p>
               </div>
             </div>
             <div class="col">
               <h5>Tempo:</h5>
               <div v-for="tempo in tempos" v-bind:key="tempo.id">
-                <p>{{ tempo.name }}<input type="checkbox" id="tempo.id" v-bind:value="tempo.name"
-                    v-model="searchTempoParams">
+                <p>{{ tempo.name }}<input class="form-check-input" type="checkbox" id="tempo.id"
+                    v-bind:value="tempo.name" v-model="searchTempoParams">
                 </p>
               </div>
             </div>
@@ -144,5 +144,9 @@ export default {
 <style>
 .index {
   text-align: center;
+}
+
+.form-check-input {
+  margin-left: 15px
 }
 </style>
