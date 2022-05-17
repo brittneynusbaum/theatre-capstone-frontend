@@ -70,10 +70,10 @@ export default {
         this.tempos = response.data
       })
     },
-    saving: function (theId) {
-      console.log(theId)
+    saving: function (theSong) {
+      console.log(theSong.id)
       console.log('saving audition song')
-      axios.post(`/saved_songs?song_id=${theId}&user_id=1`).then(response => {
+      axios.post(`/saved_songs?song_id=${theSong.id}`).then(response => {
         console.log(response.data);
       })
     }
@@ -89,7 +89,7 @@ export default {
 
         <div v-for="song in songs" v-bind:key="song.id">
           <p>{{ song.title }}</p>
-          <p><button class="btn btn-dark btn-sm" v-on:click="saving(song.id)">Save song</button></p>
+          <p><button class="btn btn-dark btn-sm" v-on:click="saving(song)">Save song</button></p>
         </div>
         <hr />
         <h6>Select from the search options below:</h6>

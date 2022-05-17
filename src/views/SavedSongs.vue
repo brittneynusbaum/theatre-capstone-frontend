@@ -37,7 +37,6 @@ export default {
       axios.post(`/notes`, this.newNoteParams).then(response => {
         console.log(response.data);
         this.newNoteParams = response.data
-
       })
     },
     notesDelete: function (theNote) {
