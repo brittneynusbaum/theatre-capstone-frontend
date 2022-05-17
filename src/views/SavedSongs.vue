@@ -48,6 +48,7 @@ export default {
 <template>
   <div class="saved">
     <div class="position-absolute top-50 start-50 translate-middle">
+
       <div v-for="auditionSong in auditionSongs" v-bind:key="auditionSong.id">
 
         <!-- <h1>Saved songs page!</h1> -->
@@ -64,8 +65,7 @@ export default {
             <div class="col">
               <button class="btn btn-dark btn-sm" type="button" data-bs-toggle="collapse"
                 data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Add
-                New
-                Note</button>
+                New Note</button>
             </div>
           </div>
 

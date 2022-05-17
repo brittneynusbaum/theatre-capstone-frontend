@@ -13,7 +13,9 @@ export default {
       searchShowParams: [],
       searchGenreParams: [],
       searchTempoParams: [],
-      auditionSongs: []
+      auditionSongs: [],
+      isLoggedIn: false,
+      getUserId: 0
     };
   },
   created: function () {
@@ -22,6 +24,13 @@ export default {
       this.songsIndex(),
       this.genresIndex(),
       this.temposIndex()
+  },
+  watch: {
+    $route: function () {
+      console.log('in route')
+      this.isLoggedIn = !!localStorage.jwt;
+      this.getUserId = localStorage.user_id;
+    }
   },
   mounted: function () {
   },
@@ -77,14 +86,16 @@ export default {
 <template>
   <div class="index">
     <div class="position-absolute top-50 start-50 translate-middle">
-      <div class="bg-light p-2 text-dark bg-opacity-25">
+      <div class="bg-light p-2 text-dark bg-opacity-50">
         <h4>Results:</h4>
+
         <div v-for="song in songs" v-bind:key="song.id">
           <p>{{ song.title }}</p>
-          <p><button v-on:click="saving(song.id)">Save song</button></p>
+          <p><button class="btn btn-dark btn-sm" v-on:click="saving(song.id)">Save song</button></p>
         </div>
         <hr />
         <h6>Select from the search options below:</h6>
+
         <div class="container">
           <div class="row align-items-start">
             <div class="col">

@@ -1,14 +1,19 @@
-<template>
-  <!-- <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/songs">Songs</router-link>|
-    <router-link to="/saved">Saved Songs</router-link>|
-    <router-link to="/signup">Signup</router-link>|
-    <router-link to="/login">Login</router-link>|
-    <router-link to="/logout">Logout</router-link>
+<script>
+export default {
+  data: function () {
+    return {
+      isLoggedIn: false
+    }
+  },
+  watch: {
+    $route: function () {
+      this.isLoggedIn = !!localStorage.jwt;
+    }
+  }
+}
+</script>
 
-  </nav> -->
+<template>
   <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #B0C4CF;">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Songify</a>
@@ -21,30 +26,52 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
-          <li class="nav-item">
+          <li v-if="isLoggedIn">
             <a class="nav-link" href="/songs">Search</a>
           </li>
-          <li class="nav-item">
+          <li v-if="isLoggedIn">
             <a class="nav-link" href="/saved">Saved</a>
           </li>
-          <li class="nav-item">
+          <li v-if="!isLoggedIn">
             <a class="nav-link" href="/signup">Signup</a>
           </li>
-          <li class="nav-item">
+          <li v-if="!isLoggedIn">
             <a class="nav-link" href="/login">Login</a>
           </li>
-          <li class="nav-item">
+          <li v-if="isLoggedIn">
             <a class="nav-link" href="/logout">Logout</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <router-view />
-  <img
+  <div class="container">
+    <!-- is logged in: {{ isLoggedIn }} -->
+    <router-view />
+  </div> <img
     src="https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yNzktbXludC0xMS1rems1NTBhYS5qcGc.jpg"
     class="img-fluid" alt="...">
 </template>
 
 <style>
+/* This text is in Optima */
+#app {
+  background-repeat: no-repeat;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  font-family: Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif;
+
+}
+
+.img {
+  height: 100%;
+  background-position: center;
+  background-size: contain, cover;
+}
+
+.navbar {
+  color: black;
+
+}
 </style>
