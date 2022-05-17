@@ -142,6 +142,7 @@ export default {
 <style>
 .index {
   text-align: center;
+  /* width: 1000px; */
 }
 
 .form-check-input {

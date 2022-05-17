@@ -77,9 +77,9 @@ export default {
           <div class="col">
             <div class="collapse multi-collapse" id="multiCollapseExample1">
               <div class="card card-body">
-                <p>Notes:</p>
+                <!-- <p>Notes:</p> -->
                 <div v-for="note in auditionSong.notes" v-bind:key="note.id">
-                  <p> <input type="text" v-model="note.description"></p>
+                  <p> <input class="input-note" type="text" v-model="note.description"></p>
                   <button type="button" class="btn btn-dark btn-sm" v-on:click="notesUpdate(note)">Save changes</button>
                 </div>
               </div>
@@ -103,5 +103,9 @@ export default {
 <style>
 .saved {
   text-align: center;
+}
+
+.input-note {
+  margin-top: 15px;
 }
 </style>
