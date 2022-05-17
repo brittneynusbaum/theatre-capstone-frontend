@@ -45,33 +45,49 @@ export default {
       </div>
     </div>
   </nav>
-  <div class="container">
-    <!-- is logged in: {{ isLoggedIn }} -->
-    <router-view />
-  </div> <img
+
+  <router-view />
+  <!-- <img
     src="https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yNzktbXludC0xMS1rems1NTBhYS5qcGc.jpg"
-    class="img-fluid" alt="...">
+    class="bg" alt="..."> -->
 </template>
 
 <style>
-/* This text is in Optima */
 #app {
-  background-repeat: no-repeat;
-  height: 100%;
-  background-position: center;
-  background-size: cover;
   font-family: Optima, Segoe, Segoe UI, Candara, Calibri, Arial, sans-serif;
+  /* The image used */
+  background-image: url("https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yNzktbXludC0xMS1rems1NTBhYS5qcGc.jpg");
 
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.img {
+/* .bg {
   height: 100%;
   background-position: center;
   background-size: contain, cover;
+} */
+
+body,
+html {
+  height: 100%;
 }
 
-.navbar {
-  color: black;
+.bg {
+  /* The image used */
+  background-image: url("https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yNzktbXludC0xMS1rems1NTBhYS5qcGc.jpg");
 
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 </style>
