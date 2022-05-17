@@ -9,9 +9,9 @@
     <router-link to="/logout">Logout</router-link>
 
   </nav> -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #B0C4CF;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">Songify</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,10 +22,10 @@
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/songs">Search Audition Songs</a>
+            <a class="nav-link" href="/songs">Search</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/saved">Saved Songs</a>
+            <a class="nav-link" href="/saved">Saved</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/signup">Signup</a>
@@ -41,6 +41,9 @@
     </div>
   </nav>
   <router-view />
+  <img
+    src="https://images.rawpixel.com/image_1300/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yNzktbXludC0xMS1rems1NTBhYS5qcGc.jpg"
+    class="img-fluid" alt="...">
 </template>
 
 <style>

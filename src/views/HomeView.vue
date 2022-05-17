@@ -12,12 +12,18 @@ export default {
 
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
-    <a href="/signup" class="btn btn-primary btn-sm">Signup</a>
-    <!-- <a href="/signup" class="btn btn-primary btn-sm">Login</button> -->
-
+    <div class="position-absolute top-50 start-50 translate-middle-x">
+      <h1>{{ message }}</h1>
+      <p>Save time by searching for audition songs in one place!</p>
+      <a href="/signup" class="btn btn-dark btn-lg">Signup</a>
+      <a href="/login" class="btn btn-dark btn-lg">Login</a>
+    </div>
   </div>
 </template>
 
 <style>
+.home {
+  color: black;
+  text-align: center;
+}
 </style>

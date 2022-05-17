@@ -75,76 +75,63 @@ export default {
 </script>
 
 <template>
-  <div class="home">
-    <h4>Results:</h4>
-    <div v-for="song in songs" v-bind:key="song.id">
-      <p>{{ song.title }}</p>
-      <p><button v-on:click="saving(song.id)">Save song</button></p>
+  <div class="index">
+    <div class="position-absolute top-50 start-50 translate-middle">
+      <div class="bg-light p-2 text-dark bg-opacity-25">
+        <h4>Results:</h4>
+        <div v-for="song in songs" v-bind:key="song.id">
+          <p>{{ song.title }}</p>
+          <p><button v-on:click="saving(song.id)">Save song</button></p>
+        </div>
+        <hr />
+        <h6>Select from the search options below:</h6>
+        <div class="container">
+          <div class="row align-items-start">
+            <div class="col">
+              <h5>Show:</h5>
+              <div v-for="show in shows" v-bind:key="show.id">
+                <p>{{ show.title }}<input type="checkbox" id="show.id" v-bind:value="show.title"
+                    v-model="searchShowParams">
+                </p>
+              </div>
+            </div>
+            <div class="col">
+              <h5>Songwriter:</h5>
+              <div v-for="songwriter in songwriters" v-bind:key="songwriter.id">
+                <p>{{ songwriter.composer }}<input type="checkbox" id="songwriter.id" v-bind:value="songwriter.composer"
+                    v-model="searchSongwriterParams">
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <div class="col">
+              <h5>Genre:</h5>
+              <div v-for="genre in genres" v-bind:key="genre.id">
+                <p>{{ genre.name }}<input type="checkbox" id="genre.id" v-bind:value="genre.name"
+                    v-model="searchGenreParams">
+                </p>
+              </div>
+            </div>
+            <div class="col">
+              <h5>Tempo:</h5>
+              <div v-for="tempo in tempos" v-bind:key="tempo.id">
+                <p>{{ tempo.name }}<input type="checkbox" id="tempo.id" v-bind:value="tempo.name"
+                    v-model="searchTempoParams">
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- {{ searchSongwriterParams }} {{ searchShowParams }} {{ searchGenreParams }} {{ searchTempoParams }} -->
+        <button class="btn btn-dark btn-sm" v-on:click="songsIndex()">Search songs</button>
+      </div>
     </div>
-    <hr />
-
-    <div class="container">
-      <div class="row align-items-start">
-        <div class="col">
-          <h3>Search by Show:</h3>
-          <div v-for="show in shows" v-bind:key="show.id">
-            <p>{{ show.title }}<input type="checkbox" id="show.id" v-bind:value="show.title" v-model="searchShowParams">
-            </p>
-          </div>
-        </div>
-        <div class="col">
-          <h3>Search by Songwriter:</h3>
-          <div v-for="songwriter in songwriters" v-bind:key="songwriter.id">
-            <p>{{ songwriter.composer }}<input type="checkbox" id="songwriter.id" v-bind:value="songwriter.composer"
-                v-model="searchSongwriterParams">
-            </p>
-          </div>
-        </div>
-        <div class="col">
-          <h3>Search by Show:</h3>
-          <div v-for="show in shows" v-bind:key="show.id">
-            <p>{{ show.title }}<input type="checkbox" id="show.id" v-bind:value="show.title" v-model="searchShowParams">
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="row align-items-center">
-        <div class="col">
-          <h3>Search by Genre:</h3>
-          <div v-for="genre in genres" v-bind:key="genre.id">
-            <p>{{ genre.name }}<input type="checkbox" id="genre.id" v-bind:value="genre.name"
-                v-model="searchGenreParams">
-            </p>
-          </div>
-        </div>
-        <div class="col">
-          <h3>Search by Tempo:</h3>
-          <div v-for="tempo in tempos" v-bind:key="tempo.id">
-            <p>{{ tempo.name }}<input type="checkbox" id="tempo.id" v-bind:value="tempo.name"
-                v-model="searchTempoParams">
-            </p>
-          </div>
-        </div>
-        <div class="col">
-          One of three columns
-        </div>
-      </div>
-      <!-- <div class="row align-items-end">
-      <div class="col">
-        One of three columns
-      </div>
-      <div class="col">
-        One of three columns
-      </div>
-      <div class="col">
-        One of three columns
-      </div>
-    </div> -->
-    </div>
-    {{ searchSongwriterParams }} {{ searchShowParams }} {{ searchGenreParams }} {{ searchTempoParams }}
-    <button v-on:click="songsIndex()">Search songs</button>
   </div>
 </template>
 
 <style>
+.index {
+  text-align: center;
+}
 </style>

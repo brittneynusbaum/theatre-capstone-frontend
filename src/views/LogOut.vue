@@ -13,3 +13,6 @@ export default {
 <template>
   <div class="logout"></div>
 </template>
+
+<style>
+</style>

@@ -13,8 +13,6 @@ export default {
   },
   created: function () {
     this.auditionSongsIndex()
-    // this.notesUpdate()
-    // this.notesShow()
   },
   mounted: function () {
   },
@@ -48,21 +46,62 @@ export default {
 </script>
 
 <template>
-  <div class="home">
-    <h1>Saved songs page!</h1>
-    <!-- {{ auditionSongs }} -->
-    <div v-for="auditionSong in auditionSongs" v-bind:key="auditionSong.id">
-      <p>{{ auditionSong.title }}</p>
-      <div v-for="note in auditionSong.notes" v-bind:key="note.id">
-        <p>Note: <input type="text" v-model="note.description"></p>
-        <button type="button" class="btn btn-primary" v-on:click="notesUpdate(note)">Save changes</button>
+  <div class="saved">
+    <div class="position-absolute top-50 start-50 translate-middle">
+      <div v-for="auditionSong in auditionSongs" v-bind:key="auditionSong.id">
+
+        <!-- <h1>Saved songs page!</h1> -->
+        <!-- {{ auditionSongs }} -->
+        <div class="container">
+          <div class="row align-items-start">
+            <div class="col">
+              <h6>{{ auditionSong.title }}</h6>
+            </div>
+            <div class="col">
+              <a class="btn btn-dark btn-sm" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
+                aria-expanded="false" aria-controls="multiCollapseExample1">View/Edit Notes</a>
+            </div>
+            <div class="col">
+              <button class="btn btn-dark btn-sm" type="button" data-bs-toggle="collapse"
+                data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Add
+                New
+                Note</button>
+            </div>
+          </div>
+
+        </div>
+
+        <p>
+        </p>
+        <div class="row">
+          <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
+              <div class="card card-body">
+                <p>Notes:</p>
+                <div v-for="note in auditionSong.notes" v-bind:key="note.id">
+                  <p> <input type="text" v-model="note.description"></p>
+                  <button type="button" class="btn btn-dark btn-sm" v-on:click="notesUpdate(note)">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="collapse multi-collapse" id="multiCollapseExample2">
+              <div class="card card-body">
+                <p>Note: <input type="text" v-model="newNoteParams.description"></p>
+                <button type="button" class="btn btn-dark btn-sm" v-on:click="notesCreate(auditionSong)">New
+                  note</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <p><input type="text" v-model="newNoteParams.description"></p>
-      <button type="button" class="btn btn-primary" v-on:click="notesCreate(auditionSong)">New note</button>
-      <hr />
     </div>
   </div>
 </template>
 
 <style>
+.saved {
+  text-align: center;
+}
 </style>
