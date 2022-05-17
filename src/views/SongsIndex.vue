@@ -114,8 +114,6 @@ export default {
                 </p>
               </div>
             </div>
-          </div>
-          <div class="row align-items-center">
             <div class="col">
               <h5>Genre:</h5>
               <div v-for="genre in genres" v-bind:key="genre.id">
@@ -147,6 +145,14 @@ export default {
 }
 
 .form-check-input {
-  margin-left: 15px
+  margin-left: 15px;
+}
+
+.container {
+  text-align: left;
+}
+
+.row {
+  width: 1000px;
 }
 </style>
