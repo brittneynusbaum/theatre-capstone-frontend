@@ -40,6 +40,12 @@ export default {
         this.newNoteParams = response.data
         // this.notes.push(this.newNoteParams)
       })
+    },
+    notesDelete: function (theNote) {
+      console.log('delete note')
+      axios.delete(`/notes/${theNote.id}`, theNote).then(response => {
+        console.log(response.data);
+      })
     }
   },
 };
@@ -81,6 +87,7 @@ export default {
                 <div v-for="note in auditionSong.notes" v-bind:key="note.id">
                   <p> <input class="input-note" type="text" v-model="note.description"></p>
                   <button type="button" class="btn btn-dark btn-sm" v-on:click="notesUpdate(note)">Save changes</button>
+                  <button type="button" class="btn btn-dark btn-sm" v-on:click="notesDelete(note)">Delete note</button>
                 </div>
               </div>
             </div>
