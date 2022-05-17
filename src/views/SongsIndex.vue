@@ -75,8 +75,6 @@ export default {
       console.log('saving audition song')
       axios.post(`/saved_songs?song_id=${theId}&user_id=1`).then(response => {
         console.log(response.data);
-        // console.log(this.auditionSongs)
-        // this.auditionSongs = theId
       })
     }
   },
@@ -132,7 +130,6 @@ export default {
             </div>
           </div>
         </div>
-        <!-- {{ searchSongwriterParams }} {{ searchShowParams }} {{ searchGenreParams }} {{ searchTempoParams }} -->
         <button class="btn btn-dark btn-sm" v-on:click="songsIndex()">Search songs</button>
       </div>
     </div>

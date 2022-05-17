@@ -28,8 +28,7 @@ export default {
       console.log('edit notes')
       axios.patch(`/notes/${theNote.id}`, theNote).then(response => {
         console.log(response.data);
-        // theNote = response.data
-        // this.currentNote = {};
+        this.$router.push("/saved");
       })
     },
     notesCreate: function (auditionSong) {
@@ -38,7 +37,7 @@ export default {
       axios.post(`/notes`, this.newNoteParams).then(response => {
         console.log(response.data);
         this.newNoteParams = response.data
-        // this.notes.push(this.newNoteParams)
+
       })
     },
     notesDelete: function (theNote) {
@@ -56,9 +55,6 @@ export default {
     <div class="position-absolute top-50 start-50 translate-middle">
 
       <div v-for="auditionSong in auditionSongs" v-bind:key="auditionSong.id">
-
-        <!-- <h1>Saved songs page!</h1> -->
-        <!-- {{ auditionSongs }} -->
         <div class="container">
           <div class="row align-items-start">
             <div class="col">
@@ -74,7 +70,6 @@ export default {
                 New Note</button>
             </div>
           </div>
-
         </div>
 
         <p>
@@ -114,5 +109,9 @@ export default {
 
 .input-note {
   margin-top: 15px;
+}
+
+.btn {
+  margin-left: 5px;
 }
 </style>
