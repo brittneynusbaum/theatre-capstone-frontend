@@ -14,7 +14,7 @@ export default {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #B0C4CF;">
+  <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #D7DFE3;">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Songify</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
