@@ -106,7 +106,7 @@ export default {
               <div class="collapse multi-collapse" id="multiCollapseExample2">
                 <div class="card card-body">
                   <p>Note: <input class="new-note" type="text" v-model="auditionSong.new_note.description"></p>
-                  {{ auditionSong.new_note }}
+                  <!-- {{ auditionSong.new_note }} -->
                   <button type="button" class="btn btn-dark btn-sm" v-on:click="notesCreate(auditionSong)">New
                     note</button>
                 </div>
