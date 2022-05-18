@@ -73,25 +73,26 @@ export default {
                 <button type="button" class="btn btn-danger btn-sm" v-on:click="auditionSongDelete(auditionSong)">Remove
                   Song</button>
               </div>
-              <div class="col">
-                <a class="btn btn-dark btn-sm" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
-                  aria-expanded="false" aria-controls="multiCollapseExample1">View/Edit Notes</a>
-              </div>
-              <div class="col">
-                <button class="btn btn-dark btn-sm" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#multiCollapseExample2" aria-expanded="false"
-                  aria-controls="multiCollapseExample2">Add
-                  New Note</button>
-              </div>
+              <label v-for="(multiCollapseExample, n) in multiCollapseExamples" v-bind:key="n">
+                <div class="col">
+                  <a class="btn btn-dark btn-sm" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
+                    aria-expanded="false" aria-controls="multiCollapseExample1">View/Edit Notes</a>
+                </div>
+                <div class="col">
+                  <button class="btn btn-dark btn-sm" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#multiCollapseExample2" aria-expanded="false"
+                    aria-controls="multiCollapseExample2">Add
+                    New Note</button>
+                </div>
+              </label>
             </div>
           </div>
 
           <p>
-            test new branch
           </p>
           <div class="row">
             <div class="col">
-              <div class="collapse multi-collapse" id="multiCollapseExample1">
+              <div class="collapse multi-collapse" id="multiCollapseExample3">
                 <div class="card card-body">
                   <div v-for="note in auditionSong.notes" v-bind:key="note.id">
                     <p> <input class="input-note" type="text" v-model="note.description"></p>
@@ -104,7 +105,7 @@ export default {
               </div>
             </div>
             <div class="col">
-              <div class="collapse multi-collapse" id="multiCollapseExample2">
+              <div class="collapse multi-collapse" id="multiCollapseExample4">
                 <div class="card card-body">
                   <p>Note: <input class="new-note" type="text" v-model="auditionSong.new_note.description"></p>
                   <!-- {{ auditionSong.new_note }} -->
