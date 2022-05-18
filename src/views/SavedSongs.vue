@@ -24,6 +24,12 @@ export default {
         this.auditionSongs = response.data
       })
     },
+    auditionSongDelete: function (theSong) {
+      console.log('delete song')
+      axios.delete(`/saved_songs/${theSong.id}`, theSong).then(response => {
+        console.log(response.data);
+      })
+    },
     notesUpdate: function (theNote) {
       console.log('edit notes')
       axios.patch(`/notes/${theNote.id}`, theNote).then(response => {
@@ -60,6 +66,10 @@ export default {
               <h6>{{ auditionSong.title }}</h6>
             </div>
             <div class="col">
+              <button type="button" class="btn btn-dark btn-sm" v-on:click="auditionSongDelete(auditionSong)">Remove
+                Song</button>
+            </div>
+            <div class="col">
               <a class="btn btn-dark btn-sm" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
                 aria-expanded="false" aria-controls="multiCollapseExample1">View/Edit Notes</a>
             </div>
@@ -77,7 +87,6 @@ export default {
           <div class="col">
             <div class="collapse multi-collapse" id="multiCollapseExample1">
               <div class="card card-body">
-                <!-- <p>Notes:</p> -->
                 <div v-for="note in auditionSong.notes" v-bind:key="note.id">
                   <p> <input class="input-note" type="text" v-model="note.description"></p>
                   <button type="button" class="btn btn-dark btn-sm" v-on:click="notesUpdate(note)">Save changes</button>
@@ -89,7 +98,7 @@ export default {
           <div class="col">
             <div class="collapse multi-collapse" id="multiCollapseExample2">
               <div class="card card-body">
-                <p>Note: <input type="text" v-model="newNoteParams.description"></p>
+                <p>Note: <input class="new-note" type="text" v-model="newNoteParams.description"></p>
                 <button type="button" class="btn btn-dark btn-sm" v-on:click="notesCreate(auditionSong)">New
                   note</button>
               </div>
@@ -108,9 +117,15 @@ export default {
 
 .input-note {
   margin-top: 15px;
+  width: 400px;
+  height: 40px;
 }
 
 .btn {
   margin-left: 5px;
+}
+
+.new-note {
+  width: 400px;
 }
 </style>
