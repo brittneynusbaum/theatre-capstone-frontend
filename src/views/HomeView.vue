@@ -19,6 +19,9 @@ export default {
         <a href="/signup" class="btn btn-dark btn-lg">Signup</a>
         <a href="/login" class="btn btn-dark btn-lg">Login</a>
       </div>
+      <br />
+      <h5 class="bg-light p-2 text-dark bg-opacity-75">Don't want to create an account? Click on "Login" to login as an
+        existing user!</h5>
     </div>
   </div>
 </template>

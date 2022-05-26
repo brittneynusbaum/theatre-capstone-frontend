@@ -50,10 +50,22 @@ export default {
       </form>
     </div>
   </div>
+  <div class="frodo-login">
+    <div class="bg-light p-2 text-dark bg-opacity-75">
+      <p>Frodo has an audition in the Shire, so he's already created an
+        account! He's happy to share his log in information with you if you'd like to test the app.</p>
+      <p>email: frodo@email.com</p>
+      <p>password: password</p>
+    </div>
+  </div>
 </template>
 
 <style>
 .login {
   text-align: right;
+}
+
+.frodo-login {
+  text-align: center;
 }
 </style>
